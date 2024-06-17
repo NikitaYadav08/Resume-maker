@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            color: #333; /* Dark gray text color */
+        }
+        body {
+            background-color: pink;
+        }
+         
+        h1 {
+            text-align: center;
+            color: brown; /* Blue header color */
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            width: 80%;
+            max-width: 800px; /* Limiting maximum width for better readability */
+            margin: 20px auto; /* Centering the form */
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box shadow for depth */
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px; /* Added margin bottom for label spacing */
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: calc(100% - 22px); /* Adjusted width to accommodate padding and border */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        .multi-input,
+        .multi-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .multi-input input,
+        .multi-group .form-group input {
+            flex: 1;
+        }
+
+        .btn1 {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: brown;
+            background-color: rgb(35, 144, 208); /* Blue button color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Resume Form</h1>
+
+    <div class="form-container">
+        <form action="{% url 'resume' %}" method="post">
+            {% csrf_token %}
+
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h2>Personal Information</h2>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="about">About:</label>
+                    <textarea id="about" name="about"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills:</label>
+                    <div class="multi-input">
+                        <input type="text" name="skill1">
+                        <input type="text" name="skill2">
+                        <input type="text" name="skill3">
+                        <input type="text" name="skill4">
+                        <input type="text" name="skill5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="form-section">
+                <h2>Education</h2>
+
+                <!-- Education 1 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="degree1">Degree:</label>
+                        <input type="text" id="degree1" name="degree1">
+                    </div>
+                    <div class="form-group">
+                        <label for="college1">College:</label>
+                        <input type="text" id="college1" name="college1">
+                    </div>
+                    <div class="form-group">
+                        <label for="year1">Year:</label>
+                        <input type="text" id="year1" name="year1">
+                    </div>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="degree2">Degree:</label>
+                        <input type="text" id="degree2" name="degree2">
+                    </div>
+                    <div class="form-group">
+                        <label for="college2">College:</label>
+                        <input type="text" id="college2" name="college2">
+                    </div>
+                    <div class="form-group">
+                        <label for="year2">Year:</label>
+                        <input type="text" id="year2" name="year2">
+                    </div>
+                </div>
+
+                <!-- Education 3 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="degree3">Degree:</label>
+                        <input type="text" id="degree3" name="degree3">
+                    </div>
+                    <div class="form-group">
+                        <label for="college3">College:</label>
+                        <input type="text" id="college3" name="college3">
+                    </div>
+                    <div class="form-group">
+                        <label for="year3">Year:</label>
+                        <input type="text" id="year3" name="year3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="form-section">
+                <h2>Languages</h2>
+                <div class="multi-input">
+                    <input type="text" name="lang1">
+                    <input type="text" name="lang2">
+                    <input type="text" name="lang3">
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="form-section">
+                <h2>Projects</h2>
+
+                <!-- Project 1 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="project1">Project Title:</label>
+                        <input type="text" id="project1" name="project1">
+                    </div>
+                    <div class="form-group">
+                        <label for="durat1">Duration:</label>
+                        <input type="text" id="durat1" name="durat1">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc1">Description:</label>
+                        <textarea id="desc1" name="desc1"></textarea>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="project2">Project Title:</label>
+                        <input type="text" id="project2" name="project2">
+                    </div>
+                    <div class="form-group">
+                        <label for="durat2">Duration:</label>
+                        <input type="text" id="durat2" name="durat2">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc2">Description:</label>
+                        <textarea id="desc2" name="desc2"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="form-section">
+                <h2>Experience</h2>
+
+                <!-- Experience 1 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="company1">Company Name:</label>
+                        <input type="text" id="company1" name="company1">
+                    </div>
+                    <div class="form-group">
+                        <label for="post1">Post:</label>
+                        <input type="text" id="post1" name="post1">
+                    </div>
+                    <div class="form-group">
+                        <label for="duration1">Duration:</label>
+                        <input type="text" id="duration1" name="duration1">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc3">Description:</label>
+                        <textarea id="desc3" name="desc3"></textarea>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="multi-group">
+                    <div class="form-group">
+                        <label for="company2">Company Name:</label>
+                        <input type="text" id="company2" name="company2">
+                    </div>
+                    <div class="form-group">
+                        <label for="post2">Post:</label>
+                        <input type="text" id="post2" name="post2">
+                    </div>
+                    <div class="form-group">
+                        <label for="duration2">Duration:</label>
+                        <input type="text" id="duration2" name="duration2">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc4">Description:</label>
+                        <textarea id="desc4" name="desc4"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="form-section">
+                <h2>Achievements</h2>
+                <div class="multi-input">
+                    <input type="text" name="ach1">
+                    <input type="text" name="ach2">
+                    <input type="text" name="ach3">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn1">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
+
+
